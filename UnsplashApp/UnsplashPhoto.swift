@@ -1,7 +1,14 @@
+//
+//  UnsplashPhoto.swift
+//  UnsplashApp
+//
+//  Created by Arthur LE-DEVEDEC on 1/24/24.
+//
+
 import Foundation
 
 // MARK: - UnsplashModel
-struct UnsplashModel: Codable, Identifiable {
+struct UnsplashPhoto: Codable, Identifiable {
     let id, slug: String
     let urls: Urls
     let user: User

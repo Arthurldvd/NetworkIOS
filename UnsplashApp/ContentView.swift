@@ -1,53 +1,56 @@
 import SwiftUI
 
 struct ContentView: View {
-    @State var imageList: [UnsplashModel] = []
-
-    // Ajout de la définition des colonnes pour le LazyVGrid
-    let columns = [
-        GridItem(.flexible()),
-        GridItem(.flexible())
-    ]
-
+    @StateObject var feedState = FeedState()
+    let rowTopics: [GridItem] = Array(repeating: .init(.flexible()), count: 3)
+    
     func loadData() async {
-        let url = URL(string: "https://api.unsplash.com/photos?client_id=\(ConfigurationManager.instance.plistDictionnary.clientId)")!
-
-        do {
-            let request = URLRequest(url: url)
-            let (data, _) = try await URLSession.shared.data(for: request)
-            let deserializedData = try JSONDecoder().decode([UnsplashModel].self, from: data)
-            imageList = deserializedData
-        } catch {
-            print("Error: \(error)")
-        }
+        await feedState.fetchHomeFeed()
+        await feedState.fetchTopicFeed()
     }
-
+    
     var body: some View {
-        VStack {
-            Button(action: {
-                Task {
-                    await loadData()
-                }
-            }, label: {
-                Text("Load Data")
-            })
-            ScrollView {
-                LazyVGrid(columns: columns, spacing: 8) {
-                    ForEach(imageList, id: \.id) { item in
-                        AsyncImage(url: URL(string: item.urls.small)) { image in
-                            image
-                                .centerCropped()
-                                .aspectRatio(contentMode: .fill)
-                        } placeholder: {
-                            ProgressView()
+        NavigationStack() {
+            Section() {
+                VStack {
+                    HStack(spacing: 8) {
+                        ForEach(feedState.topicFeed.prefix(3), id: \.id) { topic in
+                            NavigationLink(destination: TopicDetailsView(topic: topic)) {
+                                VStack() {
+                                    AsyncImage(url: URL(string: topic.coverPhoto.urls.small)) { image in
+                                        image
+                                            .resizable()
+                                            .aspectRatio(contentMode: .fill)
+                                    } placeholder: {
+                                        ProgressView()
+                                    }
+                                    .frame(height: 60)
+                                    .cornerRadius(12)
+                                    .shadow(radius: 5)
+                                    
+                                    Text(topic.title)
+                                }
+                            }
                         }
-                        .cornerRadius(12)
-                        .shadow(radius: 5)
                     }
                 }
-                .padding(.horizontal)
             }
-            .clipShape(RoundedRectangle(cornerRadius: 12))
+            
+            .frame(height: 100)
+            
+            Section() {
+                VStack {
+                    Button(action: {
+                        Task {
+                            await loadData()
+                        }
+                    }, label: {
+                        Text("Load Data")
+                    })
+                }
+                Grid(images: feedState.homeFeed)
+            }
+            .navigationBarTitle("Feed", displayMode: .large)
         }
     }
 }
@@ -56,10 +59,11 @@ extension Image {
     func centerCropped() -> some View {
         GeometryReader { geo in
             self
-            .resizable()
-            .scaledToFill()
-            .frame(width: geo.size.width, height: geo.size.height)
-            .clipped()
+                .resizable()
+                .scaledToFill()
+                .frame(width: geo.size.width, height: geo.size.height)
+                .clipShape(RoundedRectangle(cornerRadius: 12))
+                .clipped()
         }
     }
 }

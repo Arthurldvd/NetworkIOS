@@ -13,23 +13,32 @@ struct UnsplashAPI{
     let host = "api.unsplash.com"
     let clientId = ConfigurationManager.instance.plistDictionnary.clientId
     
-    func unsplashApiBaseUrl() -> URLComponents {
-            var components = URLComponents()
-            components.scheme = scheme
-            components.host = host
-            components.queryItems = [URLQueryItem(name: "client_id", value: clientId)]
-            return components
-        }
-    
-    func feedUrl(orderBy: String = "popular", perPage: Int = 10) -> URL? {
-            var components = unsplashApiBaseUrl()
-            components.path = "/photos"
-            components.queryItems?.append(contentsOf: [
-                URLQueryItem(name: "order_by", value: orderBy),
-                URLQueryItem(name: "per_page", value: String(perPage))
-            ])
-            return components.url
-        }
+    func unsplashApiBaseUrl(path: String) -> URLComponents {
+        print("url")
+        var urlComponents = URLComponents()
+
+        urlComponents.scheme = "https"
+        urlComponents.host = "api.unsplash.com"
+        urlComponents.path = path
+
+        let clientId = ConfigurationManager.instance.plistDictionnary.clientId
+        let clientIDQueryItem = URLQueryItem(name: "client_id", value: clientId)
+        urlComponents.queryItems = [clientIDQueryItem]
+
+        return urlComponents
+    }
+
+    func feedUrl(path: String, orderBy: String = "popular", perPage: Int = 10) -> URL? {
+        print("url1")
+        var urlComponents = unsplashApiBaseUrl(path: path)
+
+        let orderByQueryItem = URLQueryItem(name: "order_by", value: orderBy)
+        let perPageQueryItem = URLQueryItem(name: "per_page", value: String(perPage))
+
+        urlComponents.queryItems?.append(contentsOf: [orderByQueryItem, perPageQueryItem])
+
+        return urlComponents.url
+    }
 
     
 }
