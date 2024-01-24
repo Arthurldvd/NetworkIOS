@@ -6,7 +6,7 @@ struct ContentView: View {
     
     func loadData() async {
         await feedState.fetchHomeFeed()
-        await feedState.fetchTopicFeed()
+        await feedState.fetchTopic()
     }
     
     var body: some View {

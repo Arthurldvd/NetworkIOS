@@ -15,7 +15,7 @@ struct TopicDetailsView: View {
     @State var topic: UnslpashTopic
     
     func loadDataTopic() async {
-        await feedState.fetchImageOfTopicFeed(idTopic: topic.id)
+        await feedState.fetchTopicFeed(topicId: topic.id)
     }
     
     

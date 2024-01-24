@@ -23,6 +23,7 @@
 		1CF12EAE2B611FCD0039DC8E /* TopicDetailsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1CF12EAD2B611FCD0039DC8E /* TopicDetailsView.swift */; };
 		1CF12EB02B6121580039DC8E /* Grid.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1CF12EAF2B6121580039DC8E /* Grid.swift */; };
 		1CF12EB22B61219F0039DC8E /* ImageDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1CF12EB12B61219F0039DC8E /* ImageDetailView.swift */; };
+		1CF12EB72B61505B0039DC8E /* detailAuthor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1CF12EB52B614B530039DC8E /* detailAuthor.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -62,6 +63,8 @@
 		1CF12EAD2B611FCD0039DC8E /* TopicDetailsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TopicDetailsView.swift; sourceTree = "<group>"; };
 		1CF12EAF2B6121580039DC8E /* Grid.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Grid.swift; sourceTree = "<group>"; };
 		1CF12EB12B61219F0039DC8E /* ImageDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageDetailView.swift; sourceTree = "<group>"; };
+		1CF12EB52B614B530039DC8E /* detailAuthor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = detailAuthor.swift; sourceTree = "<group>"; };
+		1CF12EB82B615F0F0039DC8E /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -112,6 +115,8 @@
 		1C8F85EF2B5FEC9F006065E0 /* UnsplashApp */ = {
 			isa = PBXGroup;
 			children = (
+				1CF12EB82B615F0F0039DC8E /* Info.plist */,
+				1CF12EB52B614B530039DC8E /* detailAuthor.swift */,
 				1C8F86202B601706006065E0 /* UnsplashAPI.swift */,
 				1C8F861C2B600CEE006065E0 /* PListManager.swift */,
 				1C8F861E2B600D2D006065E0 /* environment.plist */,
@@ -289,6 +294,7 @@
 				1CF12EAE2B611FCD0039DC8E /* TopicDetailsView.swift in Sources */,
 				1C8F86212B601706006065E0 /* UnsplashAPI.swift in Sources */,
 				1C8F85F32B5FEC9F006065E0 /* ContentView.swift in Sources */,
+				1CF12EB72B61505B0039DC8E /* detailAuthor.swift in Sources */,
 				1CF12EAC2B611F270039DC8E /* unsplashTopic.swift in Sources */,
 				1C8F86232B6019C3006065E0 /* FeedState.swift in Sources */,
 				1CF12EAA2B611DAB0039DC8E /* UnsplashPhoto.swift in Sources */,
@@ -460,6 +466,10 @@
 				DEVELOPMENT_ASSET_PATHS = "\"UnsplashApp/Preview Content\"";
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = UnsplashApp/Info.plist;
+				INFOPLIST_KEY_LSApplicationCategoryType = "";
+				INFOPLIST_KEY_NSPhotoLibraryAddUsageDescription = "Téléchargement";
+				INFOPLIST_KEY_NSPhotoLibraryUsageDescription = wtf;
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
@@ -488,6 +498,10 @@
 				DEVELOPMENT_ASSET_PATHS = "\"UnsplashApp/Preview Content\"";
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = UnsplashApp/Info.plist;
+				INFOPLIST_KEY_LSApplicationCategoryType = "";
+				INFOPLIST_KEY_NSPhotoLibraryAddUsageDescription = "Téléchargement";
+				INFOPLIST_KEY_NSPhotoLibraryUsageDescription = wtf;
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
