@@ -37,6 +37,12 @@ struct ImageDetailView: View {
                 DetailAuthor(user: image.user)
             }
             
+            if(image.urls.full == "https://images.unsplash.com/photo-1547327132-5d20850c62b5?crop=entropy&cs=srgb&fm=jpg&ixid=M3w1NTc1NTF8MHwxfGFsbHw3fHx8fHx8MXx8MTcwNjExMTIyM3w&ixlib=rb-4.0.3&q=85")
+            {
+                Text("Monsieur Swift c'est trop bien je vous aime")
+                Text("Petit easteregg si vous le trouvez")
+            }
+            
             AsyncImage(url: URL(string: image.urls.full)) { phase in
                 switch phase {
                 case .success(let image):
@@ -51,13 +57,16 @@ struct ImageDetailView: View {
                 @unknown default:
                     ProgressView()
                 }
+                
             }
         }
         .navigationBarTitle("Une image de \(image.user.name)", displayMode: .inline)
         
         Button(action: {
+            print(image.urls.full)
             downloadImage(imageUrl: selectedImageFormat)
         }) {
+            Image(systemName: "square.and.arrow.down")
             Text("Télécharger l'image")
         }
         .alert(isPresented: $downloadAlert) {
